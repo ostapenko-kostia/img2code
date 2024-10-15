@@ -5,6 +5,7 @@ import { Button, Popover } from "@/components/ui";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
+import dynamic from "next/dynamic";
 
 const ThemeChangeButton: React.FC<{ className?: string }> = ({ className }) => {
   const [theme, setTheme] = React.useState(localStorage.theme);
@@ -72,4 +73,6 @@ const ThemeChangeButton: React.FC<{ className?: string }> = ({ className }) => {
   );
 };
 
-export default ThemeChangeButton;
+export default dynamic(() => Promise.resolve(ThemeChangeButton), {
+  ssr: false,
+});

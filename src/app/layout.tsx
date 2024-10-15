@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "../lib/utils";
@@ -14,8 +14,15 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Img2code",
   icons: "/favicon.ico",
-  colorScheme: "light dark",
 };
+
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
 
 export default function RootLayout({
   children,
