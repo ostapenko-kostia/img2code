@@ -11,19 +11,19 @@ const WhyUse: React.FC = () => {
     return (
         <section className="w-full py-24">
             <Container className="flex flex-col items-center gap-6">
-                <h2 className="text-4xl font-bold">
+                <h2 className="text-4xl font-bold max-xs:text-3xl">
                     Why use
                     <span className="font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                         &nbsp;Img2code
                     </span>
                 </h2>
-                <div className="grid grid-cols-2 grid-rows-2 gap-8 mt-10 max-w-[1000px]">
-                    <div className="flex items-start gap-3">
+                <div className="grid grid-cols-2 grid-rows-2 gap-8 mt-10 max-w-[1000px] max-sm:grid-cols-1 max-sm:max-w-none">
+                    <div className="flex items-start gap-3 max-md:flex-col max-md:items-center max-md:text-center">
                         <CircleCheckIcon
                             size={48}
                             className="bg-[#dcfce7] dark:bg-neutral-900 h-auto w-auto p-3 rounded-xl inline-block"
                         />
-                        <div className="flex flex-col items-start gap-4">
+                        <div className="flex flex-col items-start gap-4 max-md:items-center">
                             <h3 className="font-bold text-lg text-gray-900 dark:text-gray-200">
                                 High-Quality Image Conversion
                             </h3>
@@ -33,12 +33,12 @@ const WhyUse: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 max-md:flex-col max-md:items-center max-md:text-center">
                         <ZapIcon
                             size={48}
                             className="bg-[#dcfce7] dark:bg-neutral-900 h-auto w-auto p-3 rounded-xl inline-block"
                         />
-                        <div className="flex flex-col items-start gap-4">
+                        <div className="flex flex-col items-start gap-4 max-md:items-center">
                             <h3 className="font-bold text-lg text-gray-900 dark:text-gray-200">
                                 No Installation Needed
                             </h3>
@@ -48,12 +48,12 @@ const WhyUse: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 max-md:flex-col max-md:items-center max-md:text-center">
                         <InfinityIcon
                             size={48}
                             className="bg-[#dcfce7] dark:bg-neutral-900 h-auto w-auto p-3 rounded-xl inline-block"
                         />
-                        <div className="flex flex-col items-start gap-4">
+                        <div className="flex flex-col items-start gap-4 max-md:items-center">
                             <h3 className="font-bold text-lg text-gray-900 dark:text-gray-200">
                                 Unlimited Access
                             </h3>
@@ -63,12 +63,12 @@ const WhyUse: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 max-md:flex-col max-md:items-center max-md:text-center">
                         <ShieldCheckIcon
                             size={48}
                             className="bg-[#dcfce7] dark:bg-neutral-900 h-auto w-auto p-3 rounded-xl inline-block"
                         />
-                        <div className="flex flex-col items-start gap-4">
+                        <div className="flex flex-col items-start gap-4 max-md:items-center">
                             <h3 className="font-bold text-lg text-gray-900 dark:text-gray-200">
                                 Data Privacy and Security
                             </h3>

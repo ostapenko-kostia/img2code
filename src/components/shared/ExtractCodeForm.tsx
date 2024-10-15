@@ -64,7 +64,7 @@ const ExtractCodeForm = () => {
             className="w-full flex flex-col items-center justify-center"
             {...getRootProps()}
           >
-            <p className="text-lg font-semibold mb-2">
+            <p className="text-lg font-semibold mb-2 max-xs:text-base max-xs:text-center">
               {file ? file.name : "No file selected"}
             </p>
             <Label
@@ -81,7 +81,7 @@ const ExtractCodeForm = () => {
               ) : (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <UploadCloudIcon size={40} color="#9CA3AF" className="mb-3" />
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 max-xs:text-xs max-xs:text-center max-xs:px-1">
                     <span className="font-semibold">Click to upload</span> or
                     drag & drop or paste from{" "}
                     <span className="font-semibold">clipboard</span>
@@ -145,11 +145,11 @@ const ExtractCodeForm = () => {
           {convertedData && file ? (
             <>
               <ImageCard file={file} />
-              <div className="relative flex items-center justify-center w-full">
+              <div className="relative flex items-center justify-center w-full max-xs:flex-col max-xs:justify-normal max-xs:gap-3">
                 <h3 className="text-3xl font-semibold my-4">Result</h3>
                 <Button
                   onClick={() => window.location.reload()}
-                  className="absolute z-10 top-1/2 -translate-y-1/2 right-0"
+                  className="absolute z-10 top-1/2 -translate-y-1/2 right-0 max-xs:static"
                 >
                   Convert more!
                 </Button>

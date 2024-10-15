@@ -22,16 +22,18 @@ const CodeBlock: React.FC<Props> = ({ code, language }) => {
       saveAs(blob, `${language}-${Date.now()}.txt`);
     }
   };
+
+  const customStyle = {
+    padding: "1rem",
+  };
+
   return (
-    <div
-      className="p-8 relative"
-      style={{ backgroundColor: `${atomOneDark.hljs.background}` }}
-    >
-      <div className="absolute top-4 right-4 flex items-center gap-2">
+    <div className="relative w-full">
+      <div className="absolute top-4 right-4 flex items-center gap-2 max-md:bg-slate-600 rounded-md">
         <Button
           variant="default"
           size="icon"
-          className="bg-transparent dark:hover:bg-neutral-800"
+          className="bg-transparent dark:hover:bg-neutral-800 rounded-l-md"
           onClick={() => {
             navigator.clipboard.writeText(code);
             toast.success("Copied!");
@@ -43,13 +45,18 @@ const CodeBlock: React.FC<Props> = ({ code, language }) => {
           variant="default"
           size="icon"
           onClick={handleDownload}
-          className="bg-transparent dark:hover:bg-neutral-800"
+          className="bg-transparent dark:hover:bg-neutral-800 rounded-r-md"
         >
           <DownloadIcon className="text-white" />
         </Button>
       </div>
 
-      <SyntaxHighlighter language={language.toLowerCase()} style={atomOneDark}>
+      <SyntaxHighlighter
+        language={language.toLowerCase()}
+        style={atomOneDark}
+        customStyle={customStyle}
+        showLineNumbers
+      >
         {code}
       </SyntaxHighlighter>
     </div>
