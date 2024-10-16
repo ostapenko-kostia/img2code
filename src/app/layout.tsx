@@ -13,7 +13,7 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "Img2code",
-  icons: "/favicon.ico",
+  icons: "/favicon.png",
 };
 
 export const viewport: Viewport = {

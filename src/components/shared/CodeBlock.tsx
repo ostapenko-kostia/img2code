@@ -23,10 +23,6 @@ const CodeBlock: React.FC<Props> = ({ code, language }) => {
     }
   };
 
-  const customStyle = {
-    padding: "1rem",
-  };
-
   return (
     <div className="relative w-full">
       <div className="absolute top-4 right-4 flex items-center gap-2 max-md:bg-slate-600 rounded-md">
@@ -54,7 +50,7 @@ const CodeBlock: React.FC<Props> = ({ code, language }) => {
       <SyntaxHighlighter
         language={language.toLowerCase()}
         style={atomOneDark}
-        customStyle={customStyle}
+        customStyle={{ padding: "1rem" }}
         showLineNumbers
       >
         {code}
