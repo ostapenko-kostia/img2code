@@ -13,7 +13,7 @@ const AuthPage = () => {
   return (
     <section>
       <Container className="pt-12">
-        <Tabs defaultValue="login" className="w-[400px] mx-auto text-center">
+        <Tabs defaultValue="login" className="w-[400px] mx-auto text-center max-xs:w-full">
           <TabsList className="bg-neutral-200 w-full dark:bg-neutral-900">
             <TabsTrigger className="w-full" value="login">
               Log in

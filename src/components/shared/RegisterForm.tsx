@@ -22,7 +22,7 @@ const RegisterForm: React.FC<Props> = ({ handleRegister }) => {
 
   return (
     <form
-      className="p-4 bg-neutral-100 rounded-lg flex flex-col gap-6"
+      className="p-4 bg-neutral-100 rounded-lg flex flex-col gap-6 dark:bg-neutral-900"
       onSubmit={handleSubmit(handleRegister)}
       autoComplete="on"
     >
