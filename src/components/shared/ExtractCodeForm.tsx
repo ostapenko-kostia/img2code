@@ -70,6 +70,7 @@ const ExtractCodeForm = () => {
                   width={200}
                   height={200}
                   alt="Uploaded image"
+                  className="rounded-md aspect-square object-cover"
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">

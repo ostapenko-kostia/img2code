@@ -24,7 +24,7 @@ const ThemeChangeButton: React.FC<{ className?: string }> = ({ className }) => {
 
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button variant="outline" size="icon" className={cn(className)}>
           {theme === "light" ? <SunIcon /> : <MoonIcon />}
         </Button>
