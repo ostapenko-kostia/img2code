@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "../lib/utils";
 import { Header } from "@/components/shared/Header";
 import { Toaster } from "react-hot-toast";
+import Provider from "./provider";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-}
+};
 
 export default function RootLayout({
   children,
@@ -32,9 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("min-h-screen", nunito.className)}>
-        <Toaster toastOptions={{className: "dark:bg-neutral-900 dark:text-white"}} />
-        <Header />
-        {children}
+        <Provider>
+          <Toaster
+            toastOptions={{ className: "dark:bg-neutral-900 dark:text-white" }}
+          />
+          <Header />
+          {children}
+        </Provider>
       </body>
     </html>
   );

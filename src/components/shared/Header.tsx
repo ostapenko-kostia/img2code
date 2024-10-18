@@ -5,9 +5,11 @@ import ThemeChangeButton from "./ThemeChangeButton";
 import Image from "next/image";
 import { Button } from "../ui";
 import { UserIcon } from "lucide-react";
+import { cookies } from "next/headers";
+import { Storage } from "@/typing/enums";
 
 export const Header: React.FC = () => {
-  const isAuth = false;
+  const isAuth = cookies().get(Storage.REFRESH_TOKEN);
   return (
     <header className="py-4 shadow-lg shadow-black/10 dark:shadow-white/10">
       <Container className="flex items-center justify-between">

@@ -1,5 +1,5 @@
 import { api } from "@/typing/enums";
-import instance from "./axiosInstance";
+import instance from "../axiosInstance";
 
 const convertService = {
   convert: async (file: File, comments: string | undefined) => {

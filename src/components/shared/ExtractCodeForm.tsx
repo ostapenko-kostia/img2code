@@ -1,34 +1,37 @@
 "use client";
 
-import {Label, Button, Switch} from "@/components/ui";
-import {AiResponse} from "@/typing/interfaces";
-import {UploadCloudIcon} from "lucide-react";
-import {useState} from "react";
-import {Controller, FieldValues, useForm} from "react-hook-form";
+import { Label, Button, Switch } from "@/components/ui";
+import { IAIResponse } from "@/typing/interfaces";
+import { UploadCloudIcon } from "lucide-react";
+import { useState } from "react";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import CodeBlock from "./CodeBlock";
 import ImageCard from "./ImageCard";
-import {Container} from "./Container";
-import {useDropzone} from "react-dropzone";
+import { Container } from "./Container";
+import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-import convertService from "@/services/convertService";
+import convertService from "@/api/convertService/convertService";
+// import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 
 const ExtractCodeForm = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [convertedData, setConvertedData] = useState<AiResponse | null>(null);
+  const [convertedData, setConvertedData] = useState<IAIResponse | null>(null);
   const [state, setState] = useState(0);
 
-  const {register, handleSubmit, control} = useForm();
-  const {getRootProps, getInputProps} = useDropzone({
+  const { register, handleSubmit, control } = useForm();
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
   });
+  // const { getData } = useVisitorData();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) setFile(file);
   };
 
-  const submitHandler = (data: FieldValues) => {
+  const submitHandler = async (data: FieldValues) => {
+    // const visitorId = (await getData({ ignoreCache: true })).visitorId;
     if (file) {
       const promise = convertService.convert(file, data.comments);
       toast.promise(promise, {
@@ -74,9 +77,8 @@ const ExtractCodeForm = () => {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <UploadCloudIcon size={40} color="#9CA3AF" className="mb-3"/>
-                  <p
-                    className="mb-2 text-sm text-gray-500 dark:text-gray-400 max-xs:text-xs max-xs:text-center max-xs:px-1">
+                  <UploadCloudIcon size={40} color="#9CA3AF" className="mb-3" />
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 max-xs:text-xs max-xs:text-center max-xs:px-1">
                     <span className="font-semibold">Click to upload</span> or
                     drag & drop or paste from{" "}
                     <span className="font-semibold">clipboard</span>
@@ -105,7 +107,7 @@ const ExtractCodeForm = () => {
               <Controller
                 name="comments"
                 control={control}
-                render={({field}) => (
+                render={({ field }) => (
                   <Switch
                     id="comments-checkbox"
                     checked={field.value === "on"}
@@ -139,9 +141,8 @@ const ExtractCodeForm = () => {
         <Container className="max-w-[900px] flex flex-col items-center justify-center">
           {convertedData && file ? (
             <>
-              <ImageCard file={file}/>
-              <div
-                className="relative flex items-center justify-center w-full max-xs:flex-col max-xs:justify-normal max-xs:gap-3">
+              <ImageCard file={file} />
+              <div className="relative flex items-center justify-center w-full max-xs:flex-col max-xs:justify-normal max-xs:gap-3">
                 <h3 className="text-3xl font-semibold my-4">Result</h3>
                 <Button
                   onClick={() => window.location.reload()}

@@ -3,13 +3,7 @@
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button, Input, Label } from "@/components/ui";
-import {
-    EyeClosedIcon,
-    EyeIcon,
-    LockIcon,
-    MailIcon,
-    UserIcon,
-  } from "lucide-react";
+import { EyeClosedIcon, EyeIcon, LockIcon, MailIcon } from "lucide-react";
 
 interface Props {
   handleRegister: (data: FieldValues) => void;
@@ -27,38 +21,6 @@ const RegisterForm: React.FC<Props> = ({ handleRegister }) => {
       autoComplete="on"
     >
       <h2 className="text-center font-bold text-3xl my-5">Register</h2>
-      <div className="flex flex-col items-start gap-3">
-        <Label
-          htmlFor="register-firstName"
-          className="flex items-center justify-start gap-2 text-lg font-medium"
-        >
-          <UserIcon /> First Name
-        </Label>
-        <Input
-          {...register("firstName", { required: true })}
-          placeholder="John"
-          id="register-firstName"
-          required
-          aria-label="1"
-          type="text"
-        />
-      </div>
-      <div className="flex flex-col items-start gap-3">
-        <Label
-          htmlFor="register-lastName"
-          className="flex items-center justify-start gap-2 text-lg font-medium"
-        >
-          <UserIcon /> Last Name
-        </Label>
-        <Input
-          {...register("lastName", { required: true })}
-          placeholder="Doe"
-          id="register-lastName"
-          required
-          aria-label="2"
-          type="text"
-        />
-      </div>
       <div className="flex flex-col items-start gap-3">
         <Label
           htmlFor="register-email"
