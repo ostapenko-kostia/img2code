@@ -3,7 +3,7 @@
 import { Label, Button, Switch } from "@/components/ui";
 import { IAIResponse } from "@/typing/interfaces";
 import { UploadCloudIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import CodeBlock from "./CodeBlock";
@@ -13,23 +13,55 @@ import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import convertService from "@/api/convertService/convertService";
 import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import useAuthStore from "@/store/authStore";
+import { useRouter } from "next/navigation";
+import { getRefreshToken } from "@/api/authService/authHelper";
 
 const ExtractCodeForm = () => {
+  // State
   const [file, setFile] = useState<File | null>(null);
   const [convertedData, setConvertedData] = useState<IAIResponse | null>(null);
   const [state, setState] = useState(0);
-
+  const [creditsAmount, setCreditsAmount] = useState<number>(0);
+  
+  // Inits
+  const { push } = useRouter();
+  const isAuth: boolean = !!getRefreshToken();
   const { register, handleSubmit, control } = useForm();
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
   });
   const { getData } = useVisitorData();
+  const { user } = useAuthStore();
 
+  // Fetch Credits
+  useEffect(() => {
+    const fetchCredits = async () => {
+      if (isAuth) {
+        setCreditsAmount(Number(user?.credits ?? "0"));
+      } else {
+        try {
+          const data = await getData({ ignoreCache: true });
+          const res = await convertService.getRemainingCredits(data.visitorId);
+          if (res.data.conversionsLeft)
+            setCreditsAmount(res.data.conversionsLeft);
+          else throw new Error('');
+        } catch (error) {
+          toast.error(`Could not fetch credits, ${error}`);
+          setTimeout(() => push("/"), 2000);
+        }
+      }
+    };
+
+    fetchCredits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuth]);
+
+  // Handlers
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) setFile(file);
   };
-
   const submitHandler = async (data: FieldValues) => {
     const visitorId = (await getData({ ignoreCache: true })).visitorId;
     if (file) {
@@ -53,6 +85,7 @@ const ExtractCodeForm = () => {
     }
   };
 
+  // JSX
   return (
     <div
       onPaste={(e) => {
@@ -139,6 +172,8 @@ const ExtractCodeForm = () => {
             >
               Convert
             </Button>
+
+            <p className="mt-1 text-gray-600 dark:text-neutral-400">Credits left: <span className="text-orange-600 dark:text-orange-400">{creditsAmount}</span></p>
           </div>
         </form>
       )}

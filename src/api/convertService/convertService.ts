@@ -19,6 +19,12 @@ const convertService = {
       headers: { "Content-Type": "multipart/form-data" },
     });
   },
+
+  getRemainingCredits: async (visitorId: string) => {
+    return await instance.get<{ conversionsLeft: number }>(
+      `${api.GET_REMAIN_CONVERSATIONS}?visitorId=${visitorId}`
+    );
+  },
 };
 
 export default convertService;

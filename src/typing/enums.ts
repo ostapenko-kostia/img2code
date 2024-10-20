@@ -10,4 +10,5 @@ export enum api {
   LOGIN = '/api/auth/authenticate',
   REGISTER = '/api/auth/register',
   REFRESH = '/api/auth/refreshtoken',
+  GET_REMAIN_CONVERSATIONS='/getRemainingConversions'
 }
