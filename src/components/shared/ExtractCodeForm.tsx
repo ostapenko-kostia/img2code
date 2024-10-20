@@ -22,8 +22,8 @@ const ExtractCodeForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [convertedData, setConvertedData] = useState<IAIResponse | null>(null);
   const [state, setState] = useState(0);
-  const [creditsAmount, setCreditsAmount] = useState<number>(0);
-  
+  const [creditsAmount, setCreditsAmount] = useState<number | null>(null);
+
   // Inits
   const { push } = useRouter();
   const isAuth: boolean = !!getRefreshToken();
@@ -45,7 +45,7 @@ const ExtractCodeForm = () => {
           const res = await convertService.getRemainingCredits(data.visitorId);
           if (res.data.conversionsLeft)
             setCreditsAmount(res.data.conversionsLeft);
-          else throw new Error('');
+          else throw new Error("");
         } catch (error) {
           toast.error(`Could not fetch credits, ${error}`);
           setTimeout(() => push("/"), 2000);
@@ -173,7 +173,12 @@ const ExtractCodeForm = () => {
               Convert
             </Button>
 
-            <p className="mt-1 text-gray-600 dark:text-neutral-400">Credits left: <span className="text-orange-600 dark:text-orange-400">{creditsAmount}</span></p>
+            <p className="mt-1 text-gray-600 dark:text-neutral-400">
+              Credits left:{" "}
+              <span className="text-orange-600 dark:text-orange-400">
+                {creditsAmount ?? "Loading..."}
+              </span>
+            </p>
           </div>
         </form>
       )}

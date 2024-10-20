@@ -43,7 +43,7 @@ const MouseEffectBlock: React.FC<Props> = ({ block1, block2, className }) => {
       >
         <hr
           className={cn(
-            "absolute top-0 h-full w-3 bg-gradient-to-b from-transparent via-purple-800 dark:via-purple-400 to-transparent border-none z-[1000] transition-opacity duration-300",
+            "absolute top-0 h-full w-2 bg-gradient-to-b from-transparent via-purple-800 dark:via-purple-400 to-transparent border-none z-[1000] transition-opacity duration-300",
             linePosition < 1 && "transition-all duration-1000"
           )}
           style={{
