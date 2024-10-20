@@ -32,7 +32,7 @@ const PricingPage = () => {
         <p className="text-center my-8 text-lg">
           Start with 10 free usage credits on us.{" "}
           <Link className="underline" href="/auth">
-            Login
+            Log in
           </Link>{" "}
           to start using the free credits.
         </p>

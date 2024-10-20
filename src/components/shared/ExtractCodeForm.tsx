@@ -2,7 +2,7 @@
 
 import { Label, Button, Switch } from "@/components/ui";
 import { IAIResponse } from "@/typing/interfaces";
-import { UploadCloudIcon } from "lucide-react";
+import { InfinityIcon, UploadCloudIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -16,6 +16,7 @@ import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { getRefreshToken } from "@/api/authService/authHelper";
+import { TIER } from "@/typing/enums";
 
 const ExtractCodeForm = () => {
   // State
@@ -176,7 +177,7 @@ const ExtractCodeForm = () => {
             <p className="mt-1 text-gray-600 dark:text-neutral-400">
               Credits left:{" "}
               <span className="text-orange-600 dark:text-orange-400">
-                {creditsAmount ?? "Loading..."}
+                {user?.tier === TIER.FREE ? (creditsAmount ?? "Loading...") : "Unlimited"}
               </span>
             </p>
           </div>

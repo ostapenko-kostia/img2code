@@ -7,9 +7,20 @@ export enum Storage {
 
 export enum api {
   CONVERT = "/convert",
-  LOGIN = '/api/auth/authenticate',
-  REGISTER = '/api/auth/register',
-  REFRESH = '/api/auth/refreshtoken',
-  GET_REMAIN_CONVERSATIONS='/getRemainingConversions',
-  GET_LINKS = '/getStripeLinks',
+  LOGIN = "/api/auth/authenticate",
+  REGISTER = "/api/auth/register",
+  REFRESH = "/api/auth/refreshtoken",
+  GET_REMAIN_CONVERSATIONS = "/getRemainingConversions",
+  GET_LINKS = "/getStripeLinks",
+}
+
+export enum ROLE {
+  USER = "ROLE_USER",
+  ADMIN = "ROLE_ADMIN",
+}
+
+export enum TIER {
+  FREE = "FREE",
+  PREMIUM = "PREMIUM",
+  PRO = "PRO",
 }
