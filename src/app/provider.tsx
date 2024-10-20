@@ -6,6 +6,7 @@ import {
   FpjsProvider,
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import WithAuth from "@/components/hoc/WithAuth";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Provider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -16,7 +17,9 @@ const Provider: React.FC<PropsWithChildren> = ({ children }) => {
         scriptUrlPattern: [FingerprintJSPro.defaultScriptUrlPattern],
       }}
     >
-      <WithAuth>{children}</WithAuth>
+      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}>
+        <WithAuth>{children}</WithAuth>
+      </GoogleOAuthProvider>
     </FpjsProvider>
   );
 };
