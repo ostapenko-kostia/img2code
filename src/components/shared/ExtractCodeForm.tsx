@@ -12,7 +12,7 @@ import { Container } from "./Container";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import convertService from "@/api/convertService/convertService";
-// import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 
 const ExtractCodeForm = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -23,7 +23,7 @@ const ExtractCodeForm = () => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
   });
-  // const { getData } = useVisitorData();
+  const { getData } = useVisitorData();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -31,12 +31,17 @@ const ExtractCodeForm = () => {
   };
 
   const submitHandler = async (data: FieldValues) => {
-    // const visitorId = (await getData({ ignoreCache: true })).visitorId;
+    const visitorId = (await getData({ ignoreCache: true })).visitorId;
     if (file) {
-      const promise = convertService.convert(file, data.comments);
+      const promise = convertService.convert({
+        file,
+        comments: data.comments,
+        fingerprint: visitorId,
+      });
       toast.promise(promise, {
         loading: "Converting...",
-        success: (data) => {
+        success: (response) => {
+          const { data } = response;
           setConvertedData(data);
           setState(1);
           return "Converted successfully";

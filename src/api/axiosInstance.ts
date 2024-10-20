@@ -40,10 +40,13 @@ instance.interceptors.response.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const res = await authService.refresh(refreshToken);
-        useAuthStore.setState({ user: res.user_details });
-        setAccessToken(res.access_token);
-        setRefreshToken(res.refresh_token);
+        const data = (await authService.refresh(refreshToken)).data;
+        if (data) {
+          useAuthStore.setState({ user: data.user_details });
+          setAccessToken(data.access_token);
+          setRefreshToken(data.refresh_token);
+        } else throw new Error();
+
         return instance.request(originalRequest);
       } catch {
         useAuthStore.setState({ user: null });

@@ -37,19 +37,23 @@ const useAuthStore = create<AuthState>((set) => ({
   setUser: (user) => set({ user }),
 
   login: async ({ email, password }) => {
-    const res = await authService.login({ email, password });
-    set({ user: res.user_details });
-    setAccessToken(res.access_token);
-    setRefreshToken(res.refresh_token);
+    const data = (await authService.login({ email, password }))?.data;
+    if (data) {
+      set({ user: data.user_details });
+      setAccessToken(data.access_token);
+      setRefreshToken(data.refresh_token);
+    } else throw new Error("Log in failed");
   },
   register: async ({ email, password }) => {
     await authService.register({ email, password });
   },
   refresh: async (refreshToken) => {
-    const res = await authService.refresh(refreshToken);
-    set({ user: res.user_details });
-    setAccessToken(res.access_token);
-    setRefreshToken(res.refresh_token);
+    const data = (await authService.refresh(refreshToken))?.data;
+    if (data) {
+      set({ user: data.user_details });
+      setAccessToken(data.access_token);
+      setRefreshToken(data.refresh_token);
+    };
   },
   logout: () => {
     set({ user: null });

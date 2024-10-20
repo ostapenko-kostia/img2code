@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
       <Container className="flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
           <Image
-            src="/favicon.png"
+            src="/static/images/favicon.png"
             alt="Img2code"
             width={48}
             height={48}
