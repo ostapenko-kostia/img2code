@@ -2,7 +2,7 @@
 
 import { Label, Button, Switch } from "@/components/ui";
 import { IAIResponse } from "@/typing/interfaces";
-import { InfinityIcon, UploadCloudIcon } from "lucide-react";
+import { UploadCloudIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";

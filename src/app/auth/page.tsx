@@ -8,19 +8,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useAuthStore from "@/store/authStore";
 import { GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AuthPage = () => {
   const { login, register } = useAuthStore();
-  const { push } = useRouter();
 
   const handleLogin = (data: FieldValues) => {
     toast.promise(login({ email: data.email, password: data.password }), {
       loading: "Logging in...",
       success: () => {
-        push("/");
+        setTimeout(() => window.location.reload(), 500);
         return "Logged in successfully!";
       },
       error: (err) => err.message,

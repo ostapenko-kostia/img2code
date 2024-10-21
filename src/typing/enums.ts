@@ -10,6 +10,7 @@ export enum api {
   LOGIN = "/api/auth/authenticate",
   REGISTER = "/api/auth/register",
   REFRESH = "/api/auth/refreshtoken",
+  DELETE = "/api/auth/delete",
   GET_REMAIN_CONVERSATIONS = "/getRemainingConversions",
   GET_LINKS = "/getStripeLinks",
 }

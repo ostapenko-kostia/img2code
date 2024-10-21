@@ -26,7 +26,7 @@ const PricingPage = () => {
   }, [isAuth]);
 
   return (
-    <div>
+    <div className="my-6">
       <h2 className="text-center font-bold text-4xl mt-4">Pricing</h2>
       <Container>
         <p className="text-center my-8 text-lg">
@@ -36,7 +36,7 @@ const PricingPage = () => {
           </Link>{" "}
           to start using the free credits.
         </p>
-        <div className="w-full grid grid-cols-3 gap-4">
+        <div className="w-full grid grid-cols-3 gap-4 max-md:grid-cols-1">
           <PricingCard link="/convert-image" variant="free" />
           <PricingCard
             link={premiumLink ?? "/auth"}

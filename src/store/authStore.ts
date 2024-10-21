@@ -30,6 +30,7 @@ interface AuthState {
 
   refresh: (refreshToken: string) => Promise<void>;
   logout: () => void;
+  delete: ({cb}: {cb?: () => void}) => Promise<void>;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
@@ -53,12 +54,17 @@ const useAuthStore = create<AuthState>((set) => ({
       set({ user: data.user_details });
       setAccessToken(data.access_token);
       setRefreshToken(data.refresh_token);
-    };
+    }
   },
   logout: () => {
     set({ user: null });
     removeAccessToken();
     removeRefreshToken();
+  },
+
+  delete: async ({cb}) => {
+    const res = await authService.delete();
+    if(res && res.status === 200 && cb) cb() 
   },
 }));
 

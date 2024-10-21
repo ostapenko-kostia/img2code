@@ -28,6 +28,8 @@ const authService = {
       token: refreshToken,
     });
   },
+
+  delete: async () => await instance.delete<void>(api.DELETE),
 };
 
 export default authService;
