@@ -8,7 +8,6 @@ import { Button } from "@/components/ui";
 import useAuthStore from "@/store/authStore";
 import { HistoryIcon, Settings2Icon, User2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 const ProfilePage = () => {
   const { user } = useAuthStore();

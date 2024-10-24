@@ -17,7 +17,7 @@ import Link from "next/link";
 import { TIER } from "@/typing/enums";
 import pricingService from "@/api/pricingService/pricingService";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   subscriptionInfo?: {

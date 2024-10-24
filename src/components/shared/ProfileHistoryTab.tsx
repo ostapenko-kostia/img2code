@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui";
-import ImageCard from "./ImageCard";
 import Image from "next/image";
 
 const ProfileHistoryTab = () => {
