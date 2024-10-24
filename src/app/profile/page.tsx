@@ -1,18 +1,26 @@
 "use client";
 
+import pricingService from "@/api/pricingService/pricingService";
 import { Container } from "@/components/shared/Container";
 import ProfileGeneralTab from "@/components/shared/ProfileGeneralTab";
 import ProfileHistoryTab from "@/components/shared/ProfileHistoryTab";
 import { Button } from "@/components/ui";
 import useAuthStore from "@/store/authStore";
 import { HistoryIcon, Settings2Icon, User2Icon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
   const { user } = useAuthStore();
 
   type tabs = "general" | "history";
   const [state, setState] = useState<tabs>("general");
+  const [subscriptionInfo, setSubscriptionInfo] = useState<{
+    plan_name: string;
+    status: string;
+    active_until: string;
+    auto_renew: boolean;
+  } | null>(null);
   const tabs: {
     [key in tabs]: {
       title: string;
@@ -25,7 +33,7 @@ const ProfilePage = () => {
       title: "General",
       value: "general",
       icon: <Settings2Icon />,
-      component: <ProfileGeneralTab />,
+      component: <ProfileGeneralTab subscriptionInfo={subscriptionInfo} />,
     },
     history: {
       title: "History",
@@ -34,6 +42,22 @@ const ProfilePage = () => {
       component: <ProfileHistoryTab />,
     },
   };
+
+  useEffect(() => {
+    const fetchSubscriptionInfo = async () => {
+      try {
+        const response = await pricingService.getSubscriptionInfo();
+        if (response.data) {
+          setSubscriptionInfo(response.data);
+        } else {
+          throw new Error("Something went wrong");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSubscriptionInfo();
+  }, []);
 
   return (
     <Container>

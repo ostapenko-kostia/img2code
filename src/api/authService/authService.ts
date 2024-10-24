@@ -29,6 +29,16 @@ const authService = {
     });
   },
 
+  googleRegister: async ({
+    clientId,
+    credentials,
+  }: {
+    clientId: string;
+    credentials: string;
+  }) => {
+    return await instance.post(api.GOOGLE_REGISTER, { clientId, credentials });
+  },
+
   delete: async () => await instance.delete<void>(api.DELETE),
 };
 

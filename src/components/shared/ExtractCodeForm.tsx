@@ -2,7 +2,7 @@
 
 import { Label, Button, Switch } from "@/components/ui";
 import { IAIResponse } from "@/typing/interfaces";
-import { UploadCloudIcon } from "lucide-react";
+import { Star, UploadCloudIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -150,9 +150,17 @@ const ExtractCodeForm = () => {
                   <Switch
                     id="comments-checkbox"
                     checked={field.value === "on"}
-                    onCheckedChange={(checked) =>
-                      field.onChange(checked ? "on" : "off")
-                    }
+                    onCheckedChange={(checked) => {
+                      if (isAuth) {
+                        if (user?.tier === TIER.FREE) {
+                          push("/pricing");
+                        } else {
+                          field.onChange(checked ? "on" : "off");
+                        }
+                      } else {
+                        push("/auth");
+                      }
+                    }}
                   />
                 )}
               />
@@ -163,6 +171,7 @@ const ExtractCodeForm = () => {
               >
                 Comments
               </Label>
+              <Star size={24} color="#ea580c" />
             </div>
 
             <Button
@@ -177,7 +186,7 @@ const ExtractCodeForm = () => {
             <p className="mt-1 text-gray-600 dark:text-neutral-400">
               Credits left:{" "}
               <span className="text-orange-600 dark:text-orange-400">
-                {user?.tier === TIER.FREE ? (creditsAmount ?? "Loading...") : "Unlimited"}
+                {user?.tier == TIER.FREE ? creditsAmount : "Unlimited"}
               </span>
             </p>
           </div>

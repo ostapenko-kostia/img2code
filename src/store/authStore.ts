@@ -28,9 +28,17 @@ interface AuthState {
     password: string;
   }) => Promise<void>;
 
+  googleRegister: ({
+    clientId,
+    credentials,
+  }: {
+    clientId: string;
+    credentials: string;
+  }) => Promise<void>;
+
   refresh: (refreshToken: string) => Promise<void>;
-  logout: () => void;
-  delete: ({cb}: {cb?: () => void}) => Promise<void>;
+  logout: ({ cb }: { cb?: () => void }) => void;
+  delete: ({ cb }: { cb?: () => void }) => Promise<void>;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
@@ -48,6 +56,10 @@ const useAuthStore = create<AuthState>((set) => ({
   register: async ({ email, password }) => {
     await authService.register({ email, password });
   },
+
+  googleRegister: async ({ clientId, credentials }) => {
+    await authService.googleRegister({ clientId, credentials });
+  },
   refresh: async (refreshToken) => {
     const data = (await authService.refresh(refreshToken))?.data;
     if (data) {
@@ -56,15 +68,16 @@ const useAuthStore = create<AuthState>((set) => ({
       setRefreshToken(data.refresh_token);
     }
   },
-  logout: () => {
+  logout: ({ cb }) => {
     set({ user: null });
     removeAccessToken();
     removeRefreshToken();
+    if (cb) cb();
   },
 
-  delete: async ({cb}) => {
+  delete: async ({ cb }) => {
     const res = await authService.delete();
-    if(res && res.status === 200 && cb) cb() 
+    if (res && res.status === 200 && cb) cb();
   },
 }));
 

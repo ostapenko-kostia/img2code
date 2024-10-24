@@ -6,13 +6,13 @@ import RegisterForm from "@/components/shared/RegisterForm";
 import { Button } from "@/components/ui";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useAuthStore from "@/store/authStore";
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AuthPage = () => {
-  const { login, register } = useAuthStore();
+  const { login, register, googleRegister } = useAuthStore();
 
   const handleLogin = (data: FieldValues) => {
     toast.promise(login({ email: data.email, password: data.password }), {
@@ -37,6 +37,16 @@ const AuthPage = () => {
         error: (err) => err.message,
       }
     );
+  };
+
+  const handleGoogleRegister = (response: CredentialResponse) => {
+    toast.promise(googleRegister({ clientId: response.clientId ?? "", credentials: response.credential ?? "" }), {
+      loading: "Loading...",
+      success: () => {
+        return "Registered in successfully!";
+      },
+      error: (err) => err.message,
+    });
   };
 
   return (
@@ -73,7 +83,7 @@ const AuthPage = () => {
                   containerProps={{ className: "[]:bg-transparent" }}
                   shape="circle"
                   type="icon"
-                  onSuccess={(data) => console.log(data)}
+                  onSuccess={handleGoogleRegister}
                   onError={() => toast.error("error")}
                 />
               </div>

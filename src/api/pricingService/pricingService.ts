@@ -8,6 +8,14 @@ const pricingService = {
       pro_link: string;
     }>(api.GET_LINKS);
   },
+
+  getSubscriptionInfo: async () => {
+    return await instance.get(api.GET_SUBSCRIPTION);
+  },
+
+  cancelSubscription: async () => {
+    return await instance.post(api.CANCEL_SUBSCRIPTION);
+  },
 };
 
 export default pricingService;
