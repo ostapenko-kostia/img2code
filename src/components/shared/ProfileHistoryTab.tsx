@@ -33,7 +33,7 @@ const ProfileHistoryTab = () => {
       your subscription
     </div>
   ) : (
-    <div className="flex flex-col max-lg:w-[50%] max-md:w-full">
+    <div className="flex flex-col w-full max-lg:w-[50%] max-md:w-full">
       <Carousel>
         <div className="flex items-center justify-between gap-4 mb-5">
           <h3 className="w-full text-3xl font-bold">General</h3>
