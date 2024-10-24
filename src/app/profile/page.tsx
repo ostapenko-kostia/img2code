@@ -88,7 +88,7 @@ const ProfilePage = () => {
             ))}
           </ul>
         </aside>
-        <div className="w-full">{tabs[state].component}</div>
+        {tabs[state].component}
       </div>
     </Container>
   );
