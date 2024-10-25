@@ -13,7 +13,7 @@ const WithAuth: React.FC<PropsWithChildren> = ({ children }) => {
       if (refreshToken && refreshToken != "") {
         try {
           await refresh(refreshToken);
-        } catch (error) {
+        } catch {
           logout({ cb: () => window.location.reload() });
         }
       }
