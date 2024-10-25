@@ -72,7 +72,7 @@ const ProfilePage = () => {
         const res = await convertService.getHistory();
         if (res.data) setHistory(res.data);
         else throw new Error("Something went wrong");
-      } catch (error) {
+      } catch {
         toast.error("Could not fetch history");
       }
     }
