@@ -9,7 +9,6 @@ import { Button } from "@/components/ui";
 import useAuthStore from "@/store/authStore";
 import { TIER } from "@/typing/enums";
 import { HistoryIcon, Settings2Icon, User2Icon } from "lucide-react";
-import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

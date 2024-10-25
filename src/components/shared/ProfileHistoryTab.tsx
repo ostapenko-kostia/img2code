@@ -17,7 +17,6 @@ import {
   DialogTrigger,
 } from "../ui";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import CodeBlock from "./CodeBlock";
 
 interface Props {
