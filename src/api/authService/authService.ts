@@ -30,7 +30,10 @@ const authService = {
   },
 
   googleRegister: async ({ credentials }: { credentials: string }) => {
-    return await instance.post(api.GOOGLE_REGISTER, { credentials });
+    const formData = new FormData().append("credentials", credentials);
+    return await instance.post(api.GOOGLE_REGISTER, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
   },
 
   delete: async () => await instance.delete<void>(api.DELETE),
