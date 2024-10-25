@@ -93,7 +93,7 @@ const ExtractCodeForm = () => {
         setFile(e.clipboardData.files[0]);
       }}
     >
-      {state === 0 && (
+      {state === 0 && (user || creditsAmount) ? (
         <form autoComplete="off" onSubmit={handleSubmit(submitHandler)}>
           <div
             className="w-full flex flex-col items-center justify-center"
@@ -186,11 +186,17 @@ const ExtractCodeForm = () => {
             <p className="mt-1 text-gray-600 dark:text-neutral-400">
               Credits left:{" "}
               <span className="text-orange-600 dark:text-orange-400">
-                {user ? user?.tier == TIER.FREE ? creditsAmount : "Unlimited" : creditsAmount}
+                {user
+                  ? user?.tier == TIER.FREE
+                    ? creditsAmount
+                    : "Unlimited"
+                  : creditsAmount}
               </span>
             </p>
           </div>
         </form>
+      ) : (
+        <p className="text-3xl text-center mt-6">Loading...</p>
       )}
       {state === 1 && (
         <Container className="max-w-[900px] flex flex-col items-center justify-center">

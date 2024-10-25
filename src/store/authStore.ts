@@ -28,13 +28,7 @@ interface AuthState {
     password: string;
   }) => Promise<void>;
 
-  googleRegister: ({
-    clientId,
-    credentials,
-  }: {
-    clientId: string;
-    credentials: string;
-  }) => Promise<void>;
+  googleRegister: ({ credentials }: { credentials: string }) => Promise<void>;
 
   refresh: (refreshToken: string) => Promise<void>;
   logout: ({ cb }: { cb?: () => void }) => void;
@@ -57,8 +51,8 @@ const useAuthStore = create<AuthState>((set) => ({
     await authService.register({ email, password });
   },
 
-  googleRegister: async ({ clientId, credentials }) => {
-    await authService.googleRegister({ clientId, credentials });
+  googleRegister: async ({ credentials }) => {
+    await authService.googleRegister({ credentials });
   },
   refresh: async (refreshToken) => {
     const data = (await authService.refresh(refreshToken))?.data;

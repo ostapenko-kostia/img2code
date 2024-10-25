@@ -18,38 +18,19 @@ import {
 } from "../ui";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import convertService from "@/api/convertService/convertService";
-import toast from "react-hot-toast";
 import CodeBlock from "./CodeBlock";
 
-const ProfileHistoryTab = () => {
+interface Props {
+  history: {
+    user_id: string;
+    code: string;
+    code_language: string;
+    file_url: string;
+  }[] | null;
+}
+
+const ProfileHistoryTab: React.FC<Props> = ({history}) => {
   const { user } = useAuthStore();
-  const [history, setHistory] = useState<
-    | {
-        user_id: string;
-        file_url: string;
-        code: string;
-        code_language: string;
-      }[]
-    | null
-  >(null);
-
-  useEffect(() => {
-    async function fetchHistory() {
-      if (user) {
-        try {
-          const res = await convertService.getHistory();
-          if (res.data) setHistory(res.data);
-          else throw new Error("Something went wrong");
-        } catch (error) {
-          toast.error("Could not fetch history");
-        }
-      }
-    }
-
-    fetchHistory();
-  }, []);
-
   return user && user.tier === TIER.FREE ? (
     <div>
       You cannot see your history. Please,{" "}
