@@ -7,6 +7,7 @@ import ProfileGeneralTab from "@/components/shared/ProfileGeneralTab";
 import ProfileHistoryTab from "@/components/shared/ProfileHistoryTab";
 import { Button } from "@/components/ui";
 import useAuthStore from "@/store/authStore";
+import { TIER } from "@/typing/enums";
 import { HistoryIcon, Settings2Icon, User2Icon } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -83,7 +84,7 @@ const ProfilePage = () => {
 
   return (
     <Container>
-      {user && subscriptionInfo && history ? (
+      {user && (user.tier === TIER.FREE || subscriptionInfo) && history ? (
         <>
           <h2 className="font-bold text-3xl my-6">Personal Cabinet</h2>
           <div className="w-full flex max-md:flex-col gap-5 max-md:gap-12">

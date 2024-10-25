@@ -48,11 +48,15 @@ const useAuthStore = create<AuthState>((set) => ({
     } else throw new Error("Log in failed");
   },
   register: async ({ email, password }) => {
-    await authService.register({ email, password });
+    const res = await authService.register({ email, password });
+    if(!res) throw new Error("Error while registering");
   },
 
   googleRegister: async ({ credentials }) => {
-    await authService.googleRegister({ credentials });
+    const res = await authService.googleRegister({ credentials });
+    if (res && res.data) {
+      // Do something
+    } else throw new Error("Error while auth with google");
   },
   refresh: async (refreshToken) => {
     const data = (await authService.refresh(refreshToken))?.data;

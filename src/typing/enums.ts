@@ -11,7 +11,7 @@ export enum api {
   REGISTER = "/register",
   GOOGLE_REGISTER = "/google",
   REFRESH = "/refresh-token",
-  DELETE = "/api/auth/delete",
+  DELETE = "/self-delete",
   GET_REMAIN_CONVERSATIONS = "/remaining-conversions",
   GET_LINKS = "/stripe-links",
   GET_SUBSCRIPTION = "/subscription-details",
