@@ -7,15 +7,16 @@ export enum Storage {
 
 export enum api {
   CONVERT = "/convert",
-  LOGIN = "/api/auth/authenticate",
-  REGISTER = "/api/auth/register",
-  GOOGLE_REGISTER = "/api/auth/google",
-  REFRESH = "/api/auth/refreshtoken",
+  LOGIN = "/login",
+  REGISTER = "/register",
+  GOOGLE_REGISTER = "/google",
+  REFRESH = "/refresh-token",
   DELETE = "/api/auth/delete",
-  GET_REMAIN_CONVERSATIONS = "/getRemainingConversions",
-  GET_LINKS = "/getStripeLinks",
-  GET_SUBSCRIPTION = "/getSubscriptionInfo",
-  CANCEL_SUBSCRIPTION = "/cancelSubscription",
+  GET_REMAIN_CONVERSATIONS = "/remaining-conversions",
+  GET_LINKS = "/stripe-links",
+  GET_SUBSCRIPTION = "/subscription-details",
+  CANCEL_SUBSCRIPTION = "/cancel-subscription",
+  HISTORY = "/history",
 }
 
 export enum ROLE {

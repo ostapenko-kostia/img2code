@@ -66,6 +66,8 @@ const useAuthStore = create<AuthState>((set) => ({
       set({ user: data.user_details });
       setAccessToken(data.access_token);
       setRefreshToken(data.refresh_token);
+    } else {
+      throw new Error();
     }
   },
   logout: ({ cb }) => {

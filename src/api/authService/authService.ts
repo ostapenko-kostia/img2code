@@ -36,7 +36,10 @@ const authService = {
     clientId: string;
     credentials: string;
   }) => {
-    return await instance.post(api.GOOGLE_REGISTER, { clientId, credentials });
+    return await instance.post(api.GOOGLE_REGISTER, {
+      client_id: clientId,
+      credentials,
+    });
   },
 
   delete: async () => await instance.delete<void>(api.DELETE),

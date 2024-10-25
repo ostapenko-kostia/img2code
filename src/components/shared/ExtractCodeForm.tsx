@@ -186,7 +186,7 @@ const ExtractCodeForm = () => {
             <p className="mt-1 text-gray-600 dark:text-neutral-400">
               Credits left:{" "}
               <span className="text-orange-600 dark:text-orange-400">
-                {user?.tier == TIER.FREE ? creditsAmount : "Unlimited"}
+                {user ? user?.tier == TIER.FREE ? creditsAmount : "Unlimited" : creditsAmount}
               </span>
             </p>
           </div>

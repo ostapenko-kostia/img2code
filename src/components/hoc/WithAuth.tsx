@@ -9,12 +9,19 @@ const WithAuth: React.FC<PropsWithChildren> = ({ children }) => {
   const { refresh, logout } = useAuthStore();
 
   useEffect(() => {
-    if (refreshToken && refreshToken != "") {
-      refresh(refreshToken).catch(logout);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    const checkAuth = async () => {
+      if (refreshToken && refreshToken != "") {
+        try {
+          await refresh(refreshToken);
+        } catch (error) {
+          logout({ cb: () => window.location.reload() });
+        }
+      }
+    };
+    checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return <>{children}</>;
 };
 

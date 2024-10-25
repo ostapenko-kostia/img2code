@@ -30,7 +30,11 @@ const PricingCard: React.FC<Props> = ({
     pro: {
       title: "Pro",
       price: 12.99,
-      features: ["All premium features", "Max File size - 10MB"],
+      features: [
+        "All premium features",
+        "Max File size - 10MB",
+        "3X Quicker conversions",
+      ],
       buttonText: "Subscribe",
     },
     premium: {
@@ -42,7 +46,7 @@ const PricingCard: React.FC<Props> = ({
         "Max File size - 5MB",
         "Code in comments",
         "History of conversions",
-        "Quicker conversions",
+        "2X Quicker conversions",
         "Priority Email Support",
       ],
       buttonText: "Subscribe",
@@ -75,9 +79,7 @@ const PricingCard: React.FC<Props> = ({
       </ul>
 
       <Link href={link}>
-        <Button className="mt-4">
-          {fields[variant].buttonText}
-        </Button>
+        <Button className="mt-4">{fields[variant].buttonText}</Button>
       </Link>
     </article>
   );

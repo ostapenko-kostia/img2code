@@ -25,6 +25,12 @@ const convertService = {
       `${api.GET_REMAIN_CONVERSATIONS}?visitorId=${visitorId}`
     );
   },
+
+  getHistory: async () => {
+    return await instance.get<
+      { user_id: string; file_url: string; code: string; code_language: string }[]
+    >(api.HISTORY);
+  },
 };
 
 export default convertService;

@@ -4,7 +4,16 @@ export { Textarea } from "./textarea";
 export { Input } from "./input";
 export { Switch } from "./switch";
 export { Badge } from "./badge";
-export { Popover } from "./popover";
+export { Popover, PopoverContent, PopoverTrigger } from "./popover";
+export {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog"
 export {
   AlertDialog,
   AlertDialogAction,
@@ -15,11 +24,11 @@ export {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from "./alert-dialog";
 export {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "./carousel";
