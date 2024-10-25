@@ -79,7 +79,7 @@ const ExtractCodeForm = () => {
           setState(1);
           return "Converted successfully";
         },
-        error: (err) => err.message,
+        error: "An error occurred, check your credits or contact support",
       });
     } else {
       toast.error("No file selected");
@@ -196,7 +196,7 @@ const ExtractCodeForm = () => {
           </div>
         </form>
       ) : (
-        <p className="text-3xl text-center mt-6">Loading...</p>
+        state === 0 && <p className="text-3xl text-center mt-6">Loading...</p>
       )}
       {state === 1 && (
         <Container className="max-w-[900px] flex flex-col items-center justify-center">
