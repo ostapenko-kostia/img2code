@@ -1,27 +1,24 @@
-import CodeBlock from "@/components/shared/CodeBlock";
+// import CodeBlock from "@/components/shared/CodeBlock";
 import { Container } from "@/components/shared/Container";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 
-interface SearchParams {
-  searchParams: {
-    code: string;
-    language: string;
-  };
-}
+// interface SearchParams {
+//   searchParams: {
+//     conversionId: string;
+//   };
+// }
 
-const CodePage: React.FC<SearchParams> = ({ searchParams }) => {
-  const code = searchParams?.code;
-  const language = searchParams?.language;
+const CodePage = async () => {
+  //   const conversionId = searchParams?.conversionId;
 
-  if (!code || !language) notFound();
+  //   if (!conversionId) notFound();
 
   return (
-    code &&
-    language && (
-      <Container className="max-w-[900px]">
-        <CodeBlock code={code} language={language} />
-      </Container>
-    )
+    // conversionId && (
+    <Container className="max-w-[900px]">
+      {/* <CodeBlock code={code} language={language} /> */}
+    </Container>
+    // )
   );
 };
 
