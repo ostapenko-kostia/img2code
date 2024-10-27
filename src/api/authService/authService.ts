@@ -1,6 +1,7 @@
 import { api } from "@/typing/enums";
-import instance from "../axiosInstance";
+import instance, { API_URL } from "../axiosInstance";
 import { IAuthResponse } from "@/typing/interfaces";
+import axios from "axios";
 
 const authService = {
   login: async ({ email, password }: { email: string; password: string }) => {
@@ -30,7 +31,11 @@ const authService = {
   },
 
   googleRegister: async ({ credentials }: { credentials: string }) => {
-    return await instance.post(api.GOOGLE_REGISTER, { credentials });
+    const formData = new FormData();
+    formData.append("credentials", credentials);
+    return await instance.post(api.GOOGLE_REGISTER, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
   },
 
   delete: async () => await instance.delete<void>(api.DELETE),

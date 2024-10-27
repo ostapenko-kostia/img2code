@@ -10,25 +10,21 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
 } from "../ui";
 import Image from "next/image";
-import CodeBlock from "./CodeBlock";
 
 interface Props {
-  history: {
-    user_id: string;
-    code: string;
-    code_language: string;
-    file_url: string;
-  }[] | null;
+  history:
+    | {
+        user_id: string;
+        code: string;
+        code_language: string;
+        file_url: string;
+      }[]
+    | null;
 }
 
-const ProfileHistoryTab: React.FC<Props> = ({history}) => {
+const ProfileHistoryTab: React.FC<Props> = ({ history }) => {
   const { user } = useAuthStore();
   return user && user.tier === TIER.FREE ? (
     <div>
@@ -64,24 +60,11 @@ const ProfileHistoryTab: React.FC<Props> = ({history}) => {
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <ul>
-                  <Dialog>
-                    <DialogTrigger>
-                      <Button>Show Code Snippet</Button>
-                    </DialogTrigger>
-                    <DialogContent className="min-w-[70%] px-3 max-lg:max-w-full max-md:min-w-0 max-md:max-w-[80%]">
-                      <DialogHeader>
-                        <DialogTitle>Code Snippet</DialogTitle>
-                      </DialogHeader>
-                      <div className="w-full relative max-md:w-[75svw]">
-                        <CodeBlock
-                          code={item.code}
-                          language={item.code_language}
-                        />
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </ul>
+                <Link
+                  href={`/code-preview?code=${item.code}&language=${item.code_language}`}
+                >
+                  <Button>Show Code Snippet</Button>
+                </Link>
               </div>
             </CarouselItem>
           ))}

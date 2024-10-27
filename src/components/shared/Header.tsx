@@ -8,8 +8,9 @@ import { UserIcon } from "lucide-react";
 import { cookies } from "next/headers";
 import { Storage } from "@/typing/enums";
 
-export const Header: React.FC = () => {
-  const isAuth = cookies().get(Storage.REFRESH_TOKEN);
+export const Header: React.FC = async () => {
+  const cookiesStorage = await cookies();
+  const isAuth = cookiesStorage.get(Storage.REFRESH_TOKEN);
   return (
     <header className="py-4 shadow-lg shadow-black/10 dark:shadow-white/10">
       <Container className="flex items-center justify-between">

@@ -40,13 +40,14 @@ const AuthPage = () => {
   };
 
   const handleGoogleRegister = (response: CredentialResponse) => {
-    toast.promise(googleRegister({ credentials: response.credential ?? "" }), {
-      loading: "Loading...",
-      success: () => {
-        return "Registered in successfully!";
-      },
-      error: (err) => err.message,
-    });
+    console.log('credential\n_______________\n\n\n', response.credential)
+    // toast.promise(googleRegister({ credentials: response.credential ?? "" }), {
+    //   loading: "Loading...",
+    //   success: () => {
+    //     return "Registered in successfully!";
+    //   },
+    //   error: (err) => err.message,
+    // });
   };
 
   return (
