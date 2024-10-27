@@ -12,7 +12,7 @@ import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AuthPage = () => {
-  const { login, register, googleRegister } = useAuthStore();
+  const { login, register } = useAuthStore();
 
   const handleLogin = (data: FieldValues) => {
     toast.promise(login({ email: data.email, password: data.password }), {

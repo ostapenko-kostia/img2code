@@ -1,7 +1,6 @@
 import { api } from "@/typing/enums";
-import instance, { API_URL } from "../axiosInstance";
+import instance from "../axiosInstance";
 import { IAuthResponse } from "@/typing/interfaces";
-import axios from "axios";
 
 const authService = {
   login: async ({ email, password }: { email: string; password: string }) => {
