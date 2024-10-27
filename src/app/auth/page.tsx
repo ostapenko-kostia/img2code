@@ -12,7 +12,7 @@ import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AuthPage = () => {
-  const { login, register } = useAuthStore();
+  const { login, register, googleRegister } = useAuthStore();
 
   const handleLogin = (data: FieldValues) => {
     toast.promise(login({ email: data.email, password: data.password }), {
@@ -40,14 +40,14 @@ const AuthPage = () => {
   };
 
   const handleGoogleRegister = (response: CredentialResponse) => {
-    console.log('credential\n_______________\n\n\n', response.credential)
-    // toast.promise(googleRegister({ credentials: response.credential ?? "" }), {
-    //   loading: "Loading...",
-    //   success: () => {
-    //     return "Registered in successfully!";
-    //   },
-    //   error: (err) => err.message,
-    // });
+    toast.promise(googleRegister({ credentials: response.credential ?? "" }), {
+      loading: "Loading...",
+      success: () => {
+        setTimeout(() => window.location.reload(), 500);
+        return "Success!";
+      },
+      error: (err) => err.message,
+    });
   };
 
   return (

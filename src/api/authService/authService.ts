@@ -32,7 +32,7 @@ const authService = {
   googleRegister: async ({ credentials }: { credentials: string }) => {
     const formData = new FormData();
     formData.append("credentials", credentials);
-    return await instance.post(api.GOOGLE_REGISTER, formData, {
+    return await instance.post<IAuthResponse>(api.GOOGLE_REGISTER, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
   },

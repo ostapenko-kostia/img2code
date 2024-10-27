@@ -55,7 +55,9 @@ const useAuthStore = create<AuthState>((set) => ({
   googleRegister: async ({ credentials }) => {
     const res = await authService.googleRegister({ credentials });
     if (res && res.data) {
-      // Do something
+      set({ user: res.data.user_details });
+      setAccessToken(res.data.access_token);
+      setRefreshToken(res.data.refresh_token);
     } else throw new Error("Error while auth with google");
   },
   refresh: async (refreshToken) => {
