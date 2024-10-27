@@ -3,13 +3,20 @@
 import { PropsWithChildren, useEffect } from "react";
 import useAuthStore from "@/store/authStore";
 import { getRefreshToken } from "@/api/authService/authHelper";
+import { useSearchParams } from "next/navigation";
 
 const WithAuth: React.FC<PropsWithChildren> = ({ children }) => {
+  const searchParams = useSearchParams();
+  const code = searchParams.get("code");
+
   const refreshToken = getRefreshToken();
-  const { refresh, logout } = useAuthStore();
+  const { refresh, logout, githubRegister } = useAuthStore();
 
   useEffect(() => {
     const checkAuth = async () => {
+      if (code) {
+        await githubRegister({ code });
+      }
       if (refreshToken && refreshToken != "") {
         try {
           await refresh(refreshToken);

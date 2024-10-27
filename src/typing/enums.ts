@@ -10,6 +10,7 @@ export enum api {
   LOGIN = "/login",
   REGISTER = "/register",
   GOOGLE_REGISTER = "/google",
+  GITHUB_REGISTER = "/github",
   REFRESH = "/refresh-token",
   DELETE = "/self-delete",
   GET_REMAIN_CONVERSATIONS = "/remaining-conversions",

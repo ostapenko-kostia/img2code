@@ -1,7 +1,7 @@
 import Hero from "@/components/shared/Hero";
 import WhyUse from "@/components/shared/WhyUse";
 
-export default function Home() {
+const Home = () => {
   return (
     <section>
       <Hero />
@@ -9,3 +9,5 @@ export default function Home() {
     </section>
   );
 }
+
+export default Home;

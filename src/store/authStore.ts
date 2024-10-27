@@ -29,6 +29,7 @@ interface AuthState {
   }) => Promise<void>;
 
   googleRegister: ({ credentials }: { credentials: string }) => Promise<void>;
+  githubRegister: ({ code }: { code: string }) => Promise<void>;
 
   refresh: (refreshToken: string) => Promise<void>;
   logout: ({ cb }: { cb?: () => void }) => void;
@@ -49,7 +50,7 @@ const useAuthStore = create<AuthState>((set) => ({
   },
   register: async ({ email, password }) => {
     const res = await authService.register({ email, password });
-    if(!res) throw new Error("Error while registering");
+    if (!res) throw new Error("Error while registering");
   },
 
   googleRegister: async ({ credentials }) => {
@@ -59,6 +60,14 @@ const useAuthStore = create<AuthState>((set) => ({
       setAccessToken(res.data.access_token);
       setRefreshToken(res.data.refresh_token);
     } else throw new Error("Error while auth with google");
+  },
+  githubRegister: async ({ code }) => {
+    const res = await authService.githubRegister({ code });
+    if (res && res.data) {
+      set({ user: res.data.user_details });
+      setAccessToken(res.data.access_token);
+      setRefreshToken(res.data.refresh_token);
+    };
   },
   refresh: async (refreshToken) => {
     const data = (await authService.refresh(refreshToken))?.data;

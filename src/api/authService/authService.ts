@@ -37,6 +37,10 @@ const authService = {
     });
   },
 
+  githubRegister: async ({ code }: { code: string }) => {
+    return await instance.post<IAuthResponse>(api.GITHUB_REGISTER, { code });
+  },
+
   delete: async () => await instance.delete<void>(api.DELETE),
 };
 
