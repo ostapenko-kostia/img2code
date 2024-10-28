@@ -1,24 +1,41 @@
-// import CodeBlock from "@/components/shared/CodeBlock";
+"use client";
+
+import convertService from "@/api/convertService/convertService";
+import CodeBlock from "@/components/shared/CodeBlock";
 import { Container } from "@/components/shared/Container";
-// import { notFound } from "next/navigation";
+import { IHistoryResponse } from "@/typing/interfaces";
+import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
 
-// interface SearchParams {
-//   searchParams: {
-//     conversionId: string;
-//   };
-// }
+const CodePage: React.FC = () => {
+  const conversionId =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("conversionId");
+  const [conversion, setConversion] = useState<IHistoryResponse | undefined>(
+    undefined
+  );
 
-const CodePage = async () => {
-  //   const conversionId = searchParams?.conversionId;
+  useEffect(() => {
+    const getConversion = async () => {
+      if (conversionId) {
+        const res = await convertService.getHistory();
+        if (res && res.data) {
+          setConversion(res.data.find((c) => c.conversion_id === conversionId));
+        } else notFound();
+      } else notFound();
+    };
+    getConversion();
+  }, [conversionId]);
 
-  //   if (!conversionId) notFound();
-
-  return (
-    // conversionId && (
+  return conversionId && conversion ? (
     <Container className="max-w-[900px]">
-      {/* <CodeBlock code={code} language={language} /> */}
+      <h2 className="text-center font-bold text-4xl mt-6">Code Snippet</h2>
+      <div className="mx-auto mt-6">
+        <CodeBlock code={conversion.code} language={conversion.code_language} />
+      </div>
     </Container>
-    // )
+  ) : (
+    <h2 className="text-center text-2xl mt-6">Loading...</h2>
   );
 };
 

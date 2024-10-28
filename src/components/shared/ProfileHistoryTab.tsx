@@ -12,16 +12,10 @@ import {
   CarouselPrevious,
 } from "../ui";
 import Image from "next/image";
+import { IHistoryResponse } from "@/typing/interfaces";
 
 interface Props {
-  history:
-    | {
-        user_id: string;
-        code: string;
-        code_language: string;
-        file_url: string;
-      }[]
-    | null;
+  history: IHistoryResponse[] | null;
 }
 
 const ProfileHistoryTab: React.FC<Props> = ({ history }) => {
@@ -44,7 +38,7 @@ const ProfileHistoryTab: React.FC<Props> = ({ history }) => {
           <CarouselNext className="static translate-y-0" />
         </div>
         <CarouselContent>
-          {history.map((item, index) => (
+          {history.reverse().map((item, index) => (
             <CarouselItem
               key={index}
               className="basis-1/3 max-lg:basis-full max-md:basis-1/2 max-[500px]:basis-full"
@@ -60,9 +54,7 @@ const ProfileHistoryTab: React.FC<Props> = ({ history }) => {
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <Link
-                  href={`/code-preview?code=${item.code}&language=${item.code_language}`}
-                >
+                <Link href={`/code-preview?conversionId=${item.conversion_id}`}>
                   <Button>Show Code Snippet</Button>
                 </Link>
               </div>

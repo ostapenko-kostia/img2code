@@ -1,5 +1,6 @@
 import { api } from "@/typing/enums";
 import instance from "../axiosInstance";
+import { IHistoryResponse } from "@/typing/interfaces";
 
 const convertService = {
   convert: async ({
@@ -27,9 +28,7 @@ const convertService = {
   },
 
   getHistory: async () => {
-    return await instance.get<
-      { user_id: string; file_url: string; code: string; code_language: string }[]
-    >(api.HISTORY);
+    return await instance.get<IHistoryResponse[]>(api.HISTORY);
   },
 };
 

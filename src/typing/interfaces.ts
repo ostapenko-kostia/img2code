@@ -10,6 +10,14 @@ export interface IAuthResponse {
   user_details: IUser;
 }
 
+export interface IHistoryResponse {
+  user_id: string;
+  code: string;
+  code_language: string;
+  file_url: string;
+  conversion_id: string; 
+}
+
 export interface IUser {
   id: string;
   email: string;

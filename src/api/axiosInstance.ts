@@ -34,8 +34,8 @@ instance.interceptors.response.use(
     const refreshToken = getRefreshToken();
 
     if (
-      (error.response.status === 401 || error.response.status === 403) &&
-      !error.config._isRetry &&
+      (error?.response?.status === 401 || error?.response?.status === 403) &&
+      !error?.config?._isRetry &&
       refreshToken
     ) {
       originalRequest._isRetry = true;

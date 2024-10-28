@@ -8,6 +8,7 @@ import ProfileHistoryTab from "@/components/shared/ProfileHistoryTab";
 import { Button } from "@/components/ui";
 import useAuthStore from "@/store/authStore";
 import { TIER } from "@/typing/enums";
+import { IHistoryResponse } from "@/typing/interfaces";
 import { HistoryIcon, Settings2Icon, User2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -24,15 +25,7 @@ const ProfilePage = () => {
     auto_renew: boolean;
   } | null>(null);
 
-  const [history, setHistory] = useState<
-    | {
-        user_id: string;
-        file_url: string;
-        code: string;
-        code_language: string;
-      }[]
-    | null
-  >(null);
+  const [history, setHistory] = useState<IHistoryResponse[] | null>(null);
 
   const tabs: {
     [key in tabs]: {
