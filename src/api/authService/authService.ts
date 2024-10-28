@@ -38,7 +38,9 @@ const authService = {
   },
 
   githubRegister: async ({ code }: { code: string }) => {
-    return await instance.post<IAuthResponse>(api.GITHUB_REGISTER, { code });
+    // const formData = new FormData();
+    // formData.append("code", code);
+    return await instance.post<IAuthResponse>(`${api.GITHUB_REGISTER}?code=${code}`);
   },
 
   delete: async () => await instance.delete<void>(api.DELETE),

@@ -67,7 +67,7 @@ const useAuthStore = create<AuthState>((set) => ({
       set({ user: res.data.user_details });
       setAccessToken(res.data.access_token);
       setRefreshToken(res.data.refresh_token);
-    };
+    } else throw new Error("Error while auth with github");
   },
   refresh: async (refreshToken) => {
     const data = (await authService.refresh(refreshToken))?.data;

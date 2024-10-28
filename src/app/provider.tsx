@@ -17,7 +17,9 @@ const Provider: React.FC<PropsWithChildren> = ({ children }) => {
         scriptUrlPattern: [FingerprintJSPro.defaultScriptUrlPattern],
       }}
     >
-      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}>
+      <GoogleOAuthProvider
+        clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""}
+      >
         <WithAuth>{children}</WithAuth>
       </GoogleOAuthProvider>
     </FpjsProvider>

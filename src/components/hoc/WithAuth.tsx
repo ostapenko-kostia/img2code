@@ -3,11 +3,13 @@
 import { PropsWithChildren, useEffect } from "react";
 import useAuthStore from "@/store/authStore";
 import { getRefreshToken } from "@/api/authService/authHelper";
-import { useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 const WithAuth: React.FC<PropsWithChildren> = ({ children }) => {
-  const searchParams = useSearchParams();
-  const code = searchParams.get("code");
+  const code =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("code")
+      : "";
 
   const refreshToken = getRefreshToken();
   const { refresh, logout, githubRegister } = useAuthStore();
@@ -15,7 +17,12 @@ const WithAuth: React.FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       if (code) {
-        await githubRegister({ code });
+        toast.promise(githubRegister({ code }), {
+          success: "Github authorization was successful!",
+          error:
+            "Something went wrong. Maybe user with that email already exists",
+          loading: "Loading...",
+        });
       }
       if (refreshToken && refreshToken != "") {
         try {
