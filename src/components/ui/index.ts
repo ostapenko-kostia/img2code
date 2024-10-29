@@ -13,7 +13,7 @@ export {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "./dialog";
 export {
   AlertDialog,
   AlertDialogAction,
@@ -32,3 +32,9 @@ export {
   CarouselNext,
   CarouselPrevious,
 } from "./carousel";
+export {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";

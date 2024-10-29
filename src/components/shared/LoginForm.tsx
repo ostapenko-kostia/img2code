@@ -1,9 +1,10 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button, Input, Label } from "../ui";
 import { EyeClosedIcon, EyeIcon, LockIcon, MailIcon } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   handleLogin: (data: FieldValues) => void;
@@ -11,7 +12,7 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({ handleLogin }) => {
   const [loginPasswordShow, setLoginPasswordShow] = useState<boolean>(false);
-  
+
   const { register, handleSubmit } = useForm();
   return (
     <form
@@ -36,13 +37,22 @@ const LoginForm: React.FC<Props> = ({ handleLogin }) => {
           type="email"
         />
       </div>
+
       <div className="flex flex-col items-start gap-3">
-        <Label
-          htmlFor="login-password"
-          className="flex items-center justify-start gap-2 text-lg font-medium"
-        >
-          <LockIcon /> Password
-        </Label>
+        <div className="flex items-center justify-between w-full">
+          <Label
+            htmlFor="login-password"
+            className="flex items-center justify-start gap-2 text-lg font-medium"
+          >
+            <LockIcon /> Password
+          </Label>
+          <Link
+            href="/reset-password"
+            className="text-blue-700 dark:text-blue-500"
+          >
+            Forgot password?
+          </Link>
+        </div>
         <div className="w-full relative">
           <Input
             {...register("password", { required: true })}

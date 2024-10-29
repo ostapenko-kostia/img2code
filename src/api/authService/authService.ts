@@ -46,6 +46,27 @@ const authService = {
   },
 
   delete: async () => await instance.delete<void>(api.DELETE),
+
+  resetPassword: async ({ email }: { email: string }) => {
+    return await instance.post<void>(api.RESET_PASSWORD, { email });
+  },
+
+  changePassword: async ({
+    email,
+    otp,
+    password,
+  }: {
+    email: string;
+    otp: string;
+    password: string;
+  }) => {
+    return await instance.post<void>(api.CHANGE_PASSWORD, {
+      email,
+      code: otp,
+      password,
+      repeated_password: password,
+    });
+  },
 };
 
 export default authService;
