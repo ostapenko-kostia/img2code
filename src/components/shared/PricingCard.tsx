@@ -78,7 +78,7 @@ const PricingCard: React.FC<Props> = ({
         ))}
       </ul>
 
-      <Link href={link} className="mt-auto">
+      <Link href={link} className="mt-auto" target="_blank">
         <Button className="mt-4">{fields[variant].buttonText}</Button>
       </Link>
     </article>
