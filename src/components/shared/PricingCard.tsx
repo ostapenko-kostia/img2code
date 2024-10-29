@@ -8,11 +8,13 @@ interface Props {
   outlined?: boolean;
   variant: "free" | "pro" | "premium";
   link: string;
+  disabled?: boolean;
 }
 
 const PricingCard: React.FC<Props> = ({
-  className,
   outlined = false,
+  disabled = false,
+  className,
   variant,
   link,
 }) => {
@@ -55,7 +57,7 @@ const PricingCard: React.FC<Props> = ({
   return (
     <article
       className={cn(
-        "flex flex-col items-center gap-3 bg-neutral-100 rounded-xl dark:bg-neutral-900 p-6 h-full",
+        "flex flex-col items-center gap-3 bg-neutral-100 rounded-xl dark:bg-neutral-900 p-6 h-full relative",
         outlined && "border-[3px] border-solid border-black",
         className
       )}
@@ -78,9 +80,12 @@ const PricingCard: React.FC<Props> = ({
         ))}
       </ul>
 
-      <Link href={link} className="mt-auto" target="_blank">
-        <Button className="mt-4">{fields[variant].buttonText}</Button>
-      </Link>
+      <Button disabled={disabled} className="mt-auto">
+        <Link href={link} target="_blank">
+          {fields[variant].buttonText}
+        </Link>
+      </Button>
+      {disabled && <small className="text-gray-700 absolute bottom-1 dark:text-gray-300">You must cancel your subscription first!</small>}
     </article>
   );
 };
