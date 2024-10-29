@@ -9,6 +9,7 @@ import {
 } from "./authService/authHelper";
 import useAuthStore from "@/store/authStore";
 import authService from "./authService/authService";
+import { api } from "@/typing/enums";
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -21,7 +22,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const refreshToken = getRefreshToken();
   const accessToken = getAccessToken();
-  if (accessToken && refreshToken && config) {
+  if (accessToken && refreshToken && config && !config.url?.includes(api.REFRESH)) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
   }
   return config;
