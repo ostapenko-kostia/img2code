@@ -10,7 +10,7 @@ const userService = {
     message: string;
   }) => {
     return await instance.post<void>(api.CONTACT_SUPPORT, {
-      email,
+      sender_email: email,
       message,
     });
   },

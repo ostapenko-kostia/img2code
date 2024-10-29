@@ -20,7 +20,7 @@ export enum api {
   HISTORY = "/history",
   RESET_PASSWORD = "/reset",
   CHANGE_PASSWORD = "/change-password",
-  CONTACT_SUPPORT = "/contact-support",
+  CONTACT_SUPPORT = "/contact-us",
 }
 
 export enum ROLE {
