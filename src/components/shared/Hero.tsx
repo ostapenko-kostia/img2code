@@ -4,8 +4,12 @@ import HeroBlockJava from "./HeroBlockJava";
 import HeroBlockJS from "./HeroBlockJS";
 import MouseEffectBlock from "./MouseEffectBlock";
 import { Button } from "../ui";
+import { cookies } from "next/headers";
+import { Storage } from "@/typing/enums";
 
-const Hero = () => {
+const Hero = async () => {
+  const cookiesStorage = await cookies();
+  const isAuth = !!cookiesStorage.get(Storage.REFRESH_TOKEN);
   return (
     <section className="py-12 shadow-lg shadow-black/10 dark:shadow-white/10">
       <Container className="flex items-center justify-center">
@@ -26,7 +30,7 @@ const Hero = () => {
             formats.
           </p>
           <Link href="/convert-image">
-            <Button>Try for free!</Button>
+            <Button>{isAuth ? "Convert" : "Try for free!"}</Button>
           </Link>
         </div>
       </Container>
