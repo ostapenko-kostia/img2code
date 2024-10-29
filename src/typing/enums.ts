@@ -1,4 +1,3 @@
-import { CheckIcon } from 'lucide-react';
 export enum Storage {
   ACCESS_TOKEN = "access_token",
   REFRESH_TOKEN = "refresh_token",
@@ -20,7 +19,8 @@ export enum api {
   CANCEL_SUBSCRIPTION = "/cancel-subscription",
   HISTORY = "/history",
   RESET_PASSWORD = "/reset",
-  CHANGE_PASSWORD = "/change-password"
+  CHANGE_PASSWORD = "/change-password",
+  CONTACT_SUPPORT = "/contact-support",
 }
 
 export enum ROLE {

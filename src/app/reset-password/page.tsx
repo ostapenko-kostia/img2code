@@ -70,7 +70,7 @@ const ResetPasswordPage = () => {
       {state === 0 && (
         <form
           onSubmit={handleSubmit(form0Handler)}
-          className="w-96 p-8 shadow-lg shadow-[rgba(0,0,0,0.25)] rounded-xl flex flex-col items-center gap-4"
+          className="w-96 p-8 shadow-lg shadow-[rgba(0,0,0,0.25)] dark:shadow-sm dark:shadow-[rgba(255,255,255,0.25)] rounded-xl flex flex-col items-center gap-4"
         >
           <h3 className="text-xl">You will get a verification code</h3>
           <div className="w-full flex flex-col gap-2 items-start">
@@ -92,7 +92,7 @@ const ResetPasswordPage = () => {
       {state === 1 && (
         <form
           onSubmit={handleSubmit(form1Handler)}
-          className="w-96 p-8 shadow-lg shadow-[rgba(0,0,0,0.25)] rounded-xl flex flex-col items-center gap-4 relative"
+          className="w-96 p-8 shadow-lg shadow-[rgba(0,0,0,0.25)] dark:shadow-sm dark:shadow-[rgba(255,255,255,0.25)] rounded-xl flex flex-col items-center gap-4 relative"
         >
           <Button
             className="absolute top-2 left-2"
@@ -129,7 +129,7 @@ const ResetPasswordPage = () => {
       {state === 2 && (
         <form
           onSubmit={handleSubmit(form2Handler)}
-          className="w-[500px] py-8 px-14 shadow-lg shadow-[rgba(0,0,0,0.25)] rounded-xl flex flex-col items-center gap-4 relative"
+          className="w-[500px] py-8 px-14 shadow-lg shadow-[rgba(0,0,0,0.25)] dark:shadow-sm dark:shadow-[rgba(255,255,255,0.25)] rounded-xl flex flex-col items-center gap-4 relative"
         >
           <Button
             className="absolute top-2 left-2"
