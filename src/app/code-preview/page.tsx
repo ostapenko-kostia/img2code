@@ -7,7 +7,7 @@ import { IHistoryResponse } from "@/typing/interfaces";
 import { notFound, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
-const CodePage: React.FC = () => {
+const CodePageSnippet: React.FC = () => {
   const conversionId = useSearchParams().get("conversionId");
   const [conversion, setConversion] = useState<IHistoryResponse | undefined>(
     undefined
@@ -37,12 +37,12 @@ const CodePage: React.FC = () => {
   );
 };
 
-export const SuspenseProvider = () => {
+const CodePage: React.FC = () => {
   return (
     <Suspense>
-      <CodePage />
+      <CodePageSnippet />
     </Suspense>
   );
 };
 
-export default SuspenseProvider;
+export default CodePage;
