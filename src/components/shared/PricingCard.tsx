@@ -81,11 +81,15 @@ const PricingCard: React.FC<Props> = ({
       </ul>
 
       <Button disabled={disabled} className="mt-auto">
-        <Link href={link} target="_blank">
+        <Link href={link} target={link.includes("stripe") ? "_blank" : "_self"}>
           {fields[variant].buttonText}
         </Link>
       </Button>
-      {disabled && <small className="text-gray-700 absolute bottom-1 dark:text-gray-300">You must cancel your subscription first!</small>}
+      {disabled && (
+        <small className="text-gray-700 absolute bottom-1 dark:text-gray-300">
+          You must cancel your subscription first!
+        </small>
+      )}
     </article>
   );
 };

@@ -74,12 +74,11 @@ const ExtractCodeForm = () => {
       toast.promise(promise, {
         loading: "Converting...",
         success: (response) => {
-          const { data } = response;
-          setConvertedData(data);
+          setConvertedData(response.data);
           setState(1);
           return "Converted successfully";
         },
-        error: "An error occurred, check your credits or contact support",
+        error: "The programming language was not recognized, or you do not have enough credits",
       });
     } else {
       toast.error("No file selected");
