@@ -12,11 +12,11 @@ import { Container } from "./Container";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import convertService from "@/api/convertService/convertService";
-import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
 import useAuthStore from "@/store/authStore";
-import { useRouter } from "next/navigation";
 import { getRefreshToken } from "@/api/authService/authHelper";
 import { TIER } from "@/typing/enums";
+import { useRouter } from "next/navigation";
+import getBrowserFingerprint from "get-browser-fingerprint";
 
 const ExtractCodeForm = () => {
   // State
@@ -29,10 +29,10 @@ const ExtractCodeForm = () => {
   const { push } = useRouter();
   const isAuth: boolean = !!getRefreshToken();
   const { register, handleSubmit, control } = useForm();
+  const router = useRouter();
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
   });
-  const { getData } = useVisitorData();
   const { user } = useAuthStore();
 
   // Fetch Credits
@@ -42,11 +42,18 @@ const ExtractCodeForm = () => {
         setCreditsAmount(Number(user?.credits ?? "0"));
       } else {
         try {
-          const data = await getData({ ignoreCache: true });
-          const res = await convertService.getRemainingCredits(data.visitorId);
-          if (res.data.conversionsLeft)
-            setCreditsAmount(res.data.conversionsLeft);
-          else throw new Error("");
+          const fingerprint = await getBrowserFingerprint();
+          if (fingerprint) {
+            const res = await convertService.getRemainingCredits(
+              fingerprint.toString()
+            );
+            if (res.data.conversionsLeft)
+              setCreditsAmount(res.data.conversionsLeft);
+            else throw new Error("");
+          } else {
+            toast.error("Something went wrong, please try again later");
+            router.push("/");
+          }
         } catch (error) {
           toast.error(`Could not fetch credits, ${error}`);
           setTimeout(() => push("/"), 2000);
@@ -64,22 +71,28 @@ const ExtractCodeForm = () => {
     if (file) setFile(file);
   };
   const submitHandler = async (data: FieldValues) => {
-    const visitorId = (await getData({ ignoreCache: true })).visitorId;
     if (file) {
-      const promise = convertService.convert({
-        file,
-        comments: data.comments,
-        fingerprint: visitorId,
-      });
-      toast.promise(promise, {
-        loading: "Converting...",
-        success: (response) => {
-          setConvertedData(response.data);
-          setState(1);
-          return "Converted successfully";
-        },
-        error: "The programming language was not recognized, or you do not have enough credits",
-      });
+      const fingerprint = await getBrowserFingerprint();
+      if (fingerprint) {
+        const promise = convertService.convert({
+          file,
+          comments: data.comments,
+          fingerprint: fingerprint.toString(),
+        });
+        toast.promise(promise, {
+          loading: "Converting...",
+          success: (response) => {
+            setConvertedData(response.data);
+            setState(1);
+            return "Converted successfully";
+          },
+          error:
+            "The programming language was not recognized, or you do not have enough credits",
+        });
+      } else {
+        toast.error("Something went wrong, please try again later");
+        router.push("/");
+      }
     } else {
       toast.error("No file selected");
     }

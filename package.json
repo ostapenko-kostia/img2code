@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs-pro-react": "^2.6.3",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -24,6 +23,7 @@
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.3.0",
     "file-saver": "^2.0.5",
+    "get-browser-fingerprint": "^4.0.1",
     "input-otp": "^1.2.4",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.451.0",
