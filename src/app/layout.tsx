@@ -32,6 +32,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="9c_O7ENvsj825dzVEZJ8utEBGO8CyaEIlFKqONrjbPA"
+        />
+      </head>
       <body className={cn("min-h-screen", nunito.className)}>
         <Provider>
           <Toaster
