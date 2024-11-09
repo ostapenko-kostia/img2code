@@ -16,6 +16,21 @@ import { Storage } from "@/typing/enums";
 import ContactUsButton from "./ContactUsButton";
 import { cn } from "@/lib/utils";
 
+const HeaderLinks = ({ className }: { className?: string }) => {
+  return (
+    <div className={cn("flex items-center gap-8", className)}>
+      <Link href="/pricing">Pricing</Link>
+      <Link href="/privacy-policy">Privacy Policy</Link>
+      <div id="shadowBox">
+        <Link href="/convert-image" className="rainbow-text-animated">
+          Convert
+        </Link>
+      </div>
+      <ContactUsButton />
+    </div>
+  );
+};
+
 const HeaderButtons = ({
   isAuth,
   className,
@@ -25,17 +40,11 @@ const HeaderButtons = ({
 }) => {
   return (
     <div className={cn("flex items-center gap-4", className)}>
-      <Link href="/pricing">
-        <Button size="icon" variant="outline">
-          <CoinsIcon />
-        </Button>
-      </Link>
       <Link href={isAuth ? "/profile" : "/auth"}>
         <Button size="icon" variant="outline">
           <UserIcon />
         </Button>
       </Link>
-      <ContactUsButton />
       <ThemeChangeButton />
     </div>
   );
@@ -46,11 +55,8 @@ export const Header: React.FC = async () => {
   const isAuth = cookiesStorage.get(Storage.REFRESH_TOKEN);
   return (
     <header className="py-4 shadow-lg shadow-black/10 dark:shadow-white/10">
-      <Container className="flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-4 max-[340px]:gap-2"
-        >
+      <Container className="flex items-center justify-between w-full">
+        <Link href="/" className="flex items-center gap-4 max-[340px]:gap-2">
           <Image
             src="/static/images/favicon.png"
             alt="Img2code"
@@ -61,22 +67,20 @@ export const Header: React.FC = async () => {
             Img2code
           </h1>
         </Link>
-        <div>
-          <HeaderButtons isAuth={!!isAuth} className="max-[450px]:hidden" />
-          <div className="hidden max-[450px]:block">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <MenuIcon />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="w-[90%] rounded-2xl">
-                <DialogTitle>Menu</DialogTitle>
-                <HeaderButtons isAuth={!!isAuth} />
-              </DialogContent>
-            </Dialog>
-          </div>
-        </div>
+        <HeaderLinks className="max-md:hidden" />
+        <HeaderButtons isAuth={!!isAuth} className="max-md:hidden" />
+        <Dialog>
+          <DialogTrigger asChild className="md:hidden">
+            <Button size="icon" variant="outline">
+              <MenuIcon />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="w-[90%] rounded-2xl flex flex-col items-center">
+            <DialogTitle className="mr-auto">Menu</DialogTitle>
+            <HeaderLinks className="flex-col gap-4" />
+            <HeaderButtons isAuth={!!isAuth} />
+          </DialogContent>
+        </Dialog>
       </Container>
     </header>
   );

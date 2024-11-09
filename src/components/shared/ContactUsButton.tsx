@@ -45,9 +45,7 @@ const ContactUsButton: React.FC<Props> = ({ className }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon" className={cn(className)}>
-          <PhoneCallIcon />
-        </Button>
+        <p className="cursor-pointer">Contact Us</p>
       </DialogTrigger>
 
       <DialogContent className="flex flex-col gap-3 p-4">
@@ -66,7 +64,7 @@ const ContactUsButton: React.FC<Props> = ({ className }) => {
               aria-label="1"
             />
           </div>
-          
+
           <div className="flex flex-col items-start w-full gap-2">
             <Label className="flex items-center gap-2 text-lg">
               <MessageCircleMoreIcon /> Message
