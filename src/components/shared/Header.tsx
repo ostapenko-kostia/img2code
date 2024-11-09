@@ -16,17 +16,14 @@ import { Storage } from "@/typing/enums";
 import ContactUsButton from "./ContactUsButton";
 import { cn } from "@/lib/utils";
 
-
 const HeaderLinks = ({ className }: { className?: string }) => {
   return (
     <div className={cn("flex items-center gap-8", className)}>
+      <Link href="/convert-image" className="rainbow-text-animated">
+        Convert
+      </Link>
       <Link href="/pricing">Pricing</Link>
       <Link href="/privacy-policy">Privacy Policy</Link>
-      <div id="shadowBox">
-        <Link href="/convert-image" className="rainbow-text-animated">
-          Convert
-        </Link>
-      </div>
       <ContactUsButton />
     </div>
   );
