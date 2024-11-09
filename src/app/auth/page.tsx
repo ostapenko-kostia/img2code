@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useAuthStore from "@/store/authStore";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -33,7 +34,10 @@ const AuthPage = () => {
       }),
       {
         loading: "Loading...",
-        success: "Registered successfully, please log in",
+        success: () => {
+          setTimeout(() => window.location.reload(), 500);
+          return "Registered successfully, please log in";
+        },
         error: (err) => err.message,
       }
     );
