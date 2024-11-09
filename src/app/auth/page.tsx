@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useAuthStore from "@/store/authStore";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 

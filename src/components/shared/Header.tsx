@@ -10,11 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui";
-import { CoinsIcon, MenuIcon, UserIcon } from "lucide-react";
+import { MenuIcon, UserIcon } from "lucide-react";
 import { cookies } from "next/headers";
 import { Storage } from "@/typing/enums";
 import ContactUsButton from "./ContactUsButton";
 import { cn } from "@/lib/utils";
+
 
 const HeaderLinks = ({ className }: { className?: string }) => {
   return (

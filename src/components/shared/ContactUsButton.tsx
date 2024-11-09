@@ -1,6 +1,6 @@
 "use client";
 
-import { MailIcon, MessageCircleMoreIcon, PhoneCallIcon } from "lucide-react";
+import { MailIcon, MessageCircleMoreIcon } from "lucide-react";
 import {
   Button,
   Dialog,
@@ -11,16 +11,11 @@ import {
   Label,
   Textarea,
 } from "../ui";
-import { cn } from "@/lib/utils";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import userService from "@/api/userService/userService";
 
-interface Props {
-  className?: string;
-}
-
-const ContactUsButton: React.FC<Props> = ({ className }) => {
+const ContactUsButton: React.FC = () => {
   const { register, handleSubmit } = useForm();
 
   const formHandler = (data: FieldValues) => {
