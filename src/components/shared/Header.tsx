@@ -23,8 +23,8 @@ const HeaderLinks = ({ className }: { className?: string }) => {
         Convert
       </Link>
       <Link href="/pricing">Pricing</Link>
-      <Link href="/privacy-policy">Privacy Policy</Link>
       <ContactUsButton />
+      <Link href="/privacy-policy">Privacy Policy</Link>
     </div>
   );
 };
