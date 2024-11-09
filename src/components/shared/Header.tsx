@@ -68,7 +68,7 @@ export const Header: React.FC = async () => {
             Img2code
           </h1>
         </Link>
-        <HeaderLinks className="max-md:hidden" />
+        <HeaderLinks className="max-md:hidden sticky left-1/2 -translate-x-1/2 max-lg:static max-lg:translate-x-0" />
         <HeaderButtons isAuth={!!isAuth} className="max-md:hidden" />
         <Dialog>
           <DialogTrigger asChild className="md:hidden">
