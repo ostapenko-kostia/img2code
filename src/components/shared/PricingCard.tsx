@@ -67,16 +67,7 @@ const PricingCard: React.FC<Props> = ({
       </h3>
       <p className="text-gray-600 text-xl dark:text-gray-500">
         <span className="font-black text-4xl text-black dark:text-white">
-          {variant == "pro" || variant == "premium" ? (
-            <>
-              <span className="line-through text-gray-500 text-sm">
-              ${fields[variant].price}
-              </span>{" "}
-              $0
-            </>
-          ) : (
-            `$${fields[variant].price}`
-          )}
+            ${fields[variant].price}
         </span>
         / month
       </p>
