@@ -6,7 +6,6 @@ import {
 } from "@/api/authService/authHelper";
 import authService from "@/api/authService/authService";
 import { IUser } from "@/typing/interfaces";
-import toast from "react-hot-toast";
 import { create } from "zustand";
 
 interface AuthState {
@@ -50,7 +49,7 @@ const useAuthStore = create<AuthState>((set) => ({
     } else throw new Error("Log in failed");
   },
   register: async ({ email, password }) => {
-    const res = await authService.register({ email, password })
+    await authService.register({ email, password })
   },
 
   googleRegister: async ({ credentials }) => {

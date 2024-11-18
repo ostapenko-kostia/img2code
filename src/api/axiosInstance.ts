@@ -57,7 +57,7 @@ instance.interceptors.response.use(
         }
 
         return instance.request(originalRequest);
-      } catch (refreshError) {
+      } catch {
         useAuthStore.setState({ user: null });
         removeAccessToken();
         removeRefreshToken();

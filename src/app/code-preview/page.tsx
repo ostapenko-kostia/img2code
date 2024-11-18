@@ -23,7 +23,7 @@ const CodePageSnippet: React.FC = () => {
       } else notFound();
     };
     getConversion();
-  }, []);
+  }, [conversionId]);
 
   return conversionId && conversion ? (
     <Container className="max-w-[900px]">
