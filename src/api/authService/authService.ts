@@ -17,7 +17,7 @@ const authService = {
     email: string;
     password: string;
   }) => {
-    return await instance.post<void>(api.REGISTER, {
+    return await instance.post<void | {errors: Record<string, string>}>(api.REGISTER, {
       email,
       password,
     });

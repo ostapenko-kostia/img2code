@@ -86,7 +86,7 @@ const ExtractCodeForm = () => {
             setState(1);
             return "Converted successfully";
           },
-          error:
+          error: (err) =>
             "The programming language was not recognized, or you do not have enough credits",
         });
       } else {
