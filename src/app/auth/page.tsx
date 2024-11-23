@@ -27,20 +27,6 @@ const AuthPage = () => {
 
   const handleRegister = async (data: FieldValues) => {
     await register({ email: data.email, password: data.password });
-    // toast.promise(
-    //   register({
-    //     email: data.email,
-    //     password: data.password,
-    //   }),
-    //   {
-    //     loading: "Loading...",
-    //     success: () => {
-    //       setTimeout(() => window.location.reload(), 500);
-    //       return "Registered successfully, please log in";
-    //     },
-    //     error: (err) => err.message,
-    //   }
-    // );
   };
 
   const handleGoogleRegister = (response: CredentialResponse) => {
